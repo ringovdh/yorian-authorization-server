@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Registration</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+    </head>
+
+    <body>
+        <div class="page">
+            <div class="container">
+                <div class="left">
+                    <div class="login">Register</div>
+                    <div class="eula">Welcome to our application.</div>
+                </div>
+                <div class="right">
+                    <div class="error" th:if="${param.error}">
+                        Invalid email and/or password.</div>
+                    <form  class="login-form" th:action="@{/register}" th:object="${user}" th:method="${method}">
+                        <div class="form-field">
+                            <label for="username">Email</label>
+                            <input class="form-input" type="email" id="username" th:field="*{email}"/>
+                        </div>
+                        <div class="form-field">
+                            <label for="password">Password</label>
+                            <input class="form-input" type="password" id="password" th:field="*{password}"/>
+                        </div>
+                        <div class="form-field">
+                            <label for="repeat-password">Repeat password</label>
+                            <input class="form-input" type="password" id="repeat-password" th:field="*{repeatPassword}"/>
+                        </div>
+                        <input id="submit" type="submit" value="Register" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -9,6 +9,7 @@ import com.nimbusds.jose.proc.SecurityContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -72,6 +73,8 @@ public class SecurityConfig {
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/error").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/registration").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/register").permitAll()
                         .anyRequest().authenticated())
             .formLogin(formLogin -> formLogin
                     .loginPage("/login")
@@ -81,13 +84,13 @@ public class SecurityConfig {
         return http.build();
     }
 
-   /* @Bean
+    @Bean
     WebSecurityCustomizer webSecurityCustomizer() {
         return web -> web
                 .debug(false)
                 .ignoring()
                 .requestMatchers("/webjars/**", "/images/**", "/css/**", "/assets/**", "/favicon.ico");
-    }*/
+    }
 
     @Bean
     BCryptPasswordEncoder passwordEncoder() { // nodig voor het encrypteren van de paswoorden
