@@ -81,13 +81,13 @@ public class SecurityConfig {
         return http.build();
     }
 
-   /* @Bean
+    @Bean
     WebSecurityCustomizer webSecurityCustomizer() {
         return web -> web
                 .debug(false)
                 .ignoring()
                 .requestMatchers("/webjars/**", "/images/**", "/css/**", "/assets/**", "/favicon.ico");
-    }*/
+    }
 
     @Bean
     BCryptPasswordEncoder passwordEncoder() { // nodig voor het encrypteren van de paswoorden

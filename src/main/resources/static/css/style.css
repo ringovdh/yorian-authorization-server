@@ -15,7 +15,7 @@ body {
 }
 .container {
     display: flex;
-    height: 350px;
+    /*height: 350px;*/
     margin: 0 auto;
     width: 640px;
 }
@@ -85,4 +85,14 @@ input {
 }
 #submit:active {
     color: #d0d0d2;
+}
+.registration {
+    text-align: center;
+    margin: 15px 5px;
+    color: #c2c2c5;
+}
+.registration a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #c2c2c5;
 }
