@@ -3,6 +3,7 @@ package be.yorian.manager;
 import be.yorian.entity.OauthUser;
 import be.yorian.repository.OauthUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.provisioning.UserDetailsManager;
@@ -49,6 +50,6 @@ public class JpaUserDetailsManager implements UserDetailsManager {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         OauthUser oauthUser = oauthUserRepository.findByEmail(email).orElseThrow(()-> new UsernameNotFoundException("user_not_found"));
-        return new org.springframework.security.core.userdetails.User(oauthUser.getEmail(), oauthUser.getPassword(), emptyList());
+        return new User(oauthUser.getEmail(), oauthUser.getPassword(), oauthUser.getAuthorities());
     }
 }

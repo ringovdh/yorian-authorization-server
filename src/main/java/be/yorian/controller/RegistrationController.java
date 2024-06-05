@@ -1,7 +1,6 @@
 package be.yorian.controller;
 
-import be.yorian.entity.OauthUser;
-import be.yorian.entity.newUser;
+import be.yorian.entity.NewUser;
 import be.yorian.exception.InvalidUserException;
 import be.yorian.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +23,13 @@ public class RegistrationController {
 
     @GetMapping("/registration")
     public String registrationForm(Model model) {
-        model.addAttribute("user", new newUser("", "", ""));
+        model.addAttribute("user", new NewUser("", "", ""));
         model.addAttribute("method", "post");
         return "registration";
     }
 
     @PostMapping("/register")
-    public String register(@ModelAttribute newUser user) {
+    public String register(@ModelAttribute NewUser user) {
         try {
             userService.createUser(user);
             return "redirect:/login";

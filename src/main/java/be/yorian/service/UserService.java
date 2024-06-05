@@ -1,10 +1,10 @@
 package be.yorian.service;
 
 import be.yorian.entity.OauthUser;
-import be.yorian.entity.newUser;
+import be.yorian.entity.NewUser;
 
 
 public interface UserService {
 
-    OauthUser createUser(newUser user);
+    OauthUser createUser(NewUser user);
 }

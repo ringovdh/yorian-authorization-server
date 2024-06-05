@@ -1,6 +1,6 @@
 package be.yorian.entity;
 
-public record newUser(
+public record NewUser(
         String email,
         String password,
         String repeatPassword) {
