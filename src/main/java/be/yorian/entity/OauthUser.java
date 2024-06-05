@@ -58,9 +58,7 @@ public class OauthUser {
     }
 
     public List<SimpleGrantedAuthority> getAuthorities() {
-        return roles.stream().map(role -> {
-            return new SimpleGrantedAuthority("ROLE_" + role.getName());
-        }).toList();
+        return roles.stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName())).toList();
     }
 
 }

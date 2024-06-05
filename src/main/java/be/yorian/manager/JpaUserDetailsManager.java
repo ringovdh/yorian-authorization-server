@@ -9,8 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 
-import static java.util.Collections.emptyList;
-
 @Service
 public class JpaUserDetailsManager implements UserDetailsManager {
 
