@@ -98,7 +98,7 @@ public class SecurityConfig {
 
     @Bean
     RegisteredClientRepository registeredClientRepository() {
-        RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
+        RegisteredClient registeredClient_1 = RegisteredClient.withId(UUID.randomUUID().toString())
                 .clientId("sandwichbar")
                 .clientSecret(passwordEncoder().encode("secret"))
                 .scope(OidcScopes.OPENID)
@@ -112,7 +112,14 @@ public class SecurityConfig {
                 .tokenSettings(tokenSettings())
                 .clientSettings(clientSettings())
                 .build();
-        return new InMemoryRegisteredClientRepository(registeredClient);
+
+        RegisteredClient registeredClient_2 = RegisteredClient.withId(UUID.randomUUID().toString())
+                .clientId("sandwich_api")
+                .clientSecret(passwordEncoder().encode("secret"))
+                .scope("read")
+                .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
+                .build();
+        return new InMemoryRegisteredClientRepository(registeredClient_1, registeredClient_2);
     }
 
     @Bean
