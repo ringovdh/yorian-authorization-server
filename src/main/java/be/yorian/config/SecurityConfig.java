@@ -113,13 +113,28 @@ public class SecurityConfig {
                 .clientSettings(clientSettings())
                 .build();
 
+        RegisteredClient registeredClient_3 = RegisteredClient.withId(UUID.randomUUID().toString())
+                .clientId("sandwichbar-jsp")
+                .clientSecret(passwordEncoder().encode("secret"))
+                .scope(OidcScopes.OPENID)
+                .redirectUri("http://localhost:8080/login/oauth2/code/spring")
+                .redirectUri("http://localhost:8080/authorized")
+                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+                .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
+                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+                .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+                .postLogoutRedirectUri("http://localhost:8080")
+                .tokenSettings(tokenSettings())
+                .clientSettings(clientSettings())
+                .build();
+
         RegisteredClient registeredClient_2 = RegisteredClient.withId(UUID.randomUUID().toString())
                 .clientId("sandwich_api")
                 .clientSecret(passwordEncoder().encode("secret"))
                 .scope("read")
                 .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
                 .build();
-        return new InMemoryRegisteredClientRepository(registeredClient_1, registeredClient_2);
+        return new InMemoryRegisteredClientRepository(registeredClient_1, registeredClient_2, registeredClient_3);
     }
 
     @Bean
